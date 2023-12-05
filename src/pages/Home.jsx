@@ -1,17 +1,13 @@
-// Home.jsx
 import React from 'react';
-import AlbumCard from '../components/AlbumCard';
+import AlbumList from '../components/AlbumList';
 import { data } from '../Data/db'; 
 
 const Home = () => {
   return (
-    <div>
-      <section>
-        <AlbumCard albums={data} /> 
-      </section>
-    </div>
+    <>
+      <AlbumList albums={data} /> 
+    </>
   );
 }
 
 export default Home;
-
