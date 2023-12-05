@@ -20,7 +20,7 @@ const AlbumCard = ({ albums }) => {
         <div 
           key={item.id} 
           className='flex flex-col justify-center cursor-pointer relative bg-[#282828] p-4 text-white rounded-xl'
-          onClick={() => openPopup(item)} // Добавлен обработчик события onClick
+          onClick={() => openPopup(item)} 
         >
           <img src={item.image.url} alt={item.title} className='h-[300px] transition duration-500 ease-in-out hover:opacity-50 rounded-xl'/>
           <div className='mt-4 flex flex-col'>
