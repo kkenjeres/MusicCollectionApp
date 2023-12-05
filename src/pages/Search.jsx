@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import AlbumCard from '../components/AlbumCard';
 import { data } from '../Data/db';
+import AlbumList from '../components/AlbumList';
 
 const Search = () => {
   const [search, setSearch] = useState('');
@@ -14,7 +14,7 @@ const Search = () => {
   );
 
   return (
-    <div className='min-h-screen'>
+    <section className='min-h-screen'>
       <input 
         type="text" 
         placeholder='Search'
@@ -22,9 +22,8 @@ const Search = () => {
         onChange={handleChange}
         value={search}
       />
-
-      <AlbumCard albums={filteredData} /> 
-    </div>
+      <AlbumList albums={filteredData} /> 
+    </section>
   );
 }
 
