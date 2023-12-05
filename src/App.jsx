@@ -11,7 +11,7 @@ function App() {
       <>
         <section className='bg-[#1DB954] rounded-xl m-4 flex'>
           <Header />
-          <main>
+          <main className='w-full'>
           <Routes>
             <Route path='/home' element={<Home />} /> 
             <Route path='/search' element={<Search />} />

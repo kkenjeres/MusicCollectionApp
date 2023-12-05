@@ -3,7 +3,6 @@ import AlbumPopup from './AlbumPopup';
 
 const AlbumCard = ({ album }) => {
   const [activeAlbum, setActiveAlbum] = useState(null);
-
   const openPopup = () => {
     setActiveAlbum(album);
   };

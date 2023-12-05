@@ -3,14 +3,30 @@ import React from 'react'
 const SongList = ({ album }) => {
   return (
     <>
-      <ul className="space-y-2">
-        {album.tracks.map((track) => (
-          <li key={track.id} className='text-[14px]'><a key={track.id} href={track.spotifyLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-            {track.name}
-          </a></li>
-        ))}
-      </ul>
-    </>
+  <div className="space-y-2">
+    {album.tracks.map((track) => (
+      <a 
+        key={track.id}
+        href={track.spotifyLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex justify-between bg-[#f0f0f0] p-2 rounded-lg gap-10 block text-black hover:text-blue-600"
+      >
+        <span className='text-[14px]'>
+          {track.track_number}
+        </span>
+        <span>
+          {track.name}
+        </span>
+        <span className='text-[14px]'>
+          {track.duration}
+        </span>
+      </a>
+    ))}
+  </div>
+
+</>
+
   )
 }
 
