@@ -1,30 +1,56 @@
-import { useState } from 'react';
-import { data } from '../Data/db';
-import AlbumList from '../components/AlbumList';
+import React, { useState } from "react";
+import AlbumList from "../components/AlbumList";
+import SearchBar from "../components/SearchBar";
+import { ImSpinner } from "react-icons/im";
+import { IoSearchSharp } from "react-icons/io5";
 
 const Search = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [albums, setAlbums] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-  }
+  };
 
-  const filteredData = data.filter(album => 
-    album.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleSearch = async () => {
+    if (search) {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `https://neuefische-spotify-proxy.vercel.app/api/search?artist=${search}`,
+        );
+        const data = await response.json();
+        setAlbums(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
 
   return (
-    <section className='min-h-screen'>
-      <input 
-        type="text" 
-        placeholder='Search'
-        className='bg-[#121212] rounded-[40px] p-2 text-white'
+    <section className="min-h-screen w-full">
+      <h1 className="flex items-center justify-center pt-6 text-[30px] ">
+        <IoSearchSharp className="" />
+        Search
+      </h1>
+
+      <SearchBar
         onChange={handleChange}
-        value={search}
+        search={search}
+        onSearch={handleSearch}
       />
-      <AlbumList albums={filteredData} /> 
+      {isLoading ? (
+        <div className="fixed bottom-0 left-0 right-0 top-0 m-auto flex h-full items-center justify-center ">
+          <ImSpinner className="h-[100px] w-[100px] animate-spin text-4xl text-[#1DB954]" />
+        </div>
+      ) : (
+        <AlbumList albums={albums} />
+      )}
     </section>
   );
-}
+};
 
 export default Search;

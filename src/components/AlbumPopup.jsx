@@ -1,14 +1,29 @@
-import React from 'react';
-import SongList from './SongList';
+import React, { useEffect } from "react";
+import SongList from "./SongList";
 
 const AlbumPopup = ({ album, onClose }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
-      <div className="bg-white p-5 rounded-lg shadow-lg">
-        <img src={album.image.url} alt={album.title} className="h-40 w-40 object-cover" />
-        <SongList album={album}/>
-        <button onClick={onClose} className="mt-3 bg-red-500 text-white py-2 px-4 rounded">
-          Close
+    <div className="fixed inset-0 z-10 flex w-full items-center justify-center bg-black bg-opacity-50">
+      <div className="relative flex w-[90%] flex-col items-center rounded-lg bg-white pt-6 shadow-lg">
+        <img
+          src={album.image.url}
+          alt={album.title}
+          className="my-10 h-full w-[90%] object-cover object-top"
+        />
+
+        <SongList album={album} />
+        <button
+          onClick={onClose}
+          className="absolute right-2 top-2 rounded bg-red-500 px-2 py-0 text-white"
+        >
+          X
         </button>
       </div>
     </div>
@@ -16,4 +31,3 @@ const AlbumPopup = ({ album, onClose }) => {
 };
 
 export default AlbumPopup;
-
