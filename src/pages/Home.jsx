@@ -30,10 +30,14 @@ const Home = () => {
   const filteredData = albums.filter((album) =>
     album.title.toLowerCase().includes(search.toLowerCase()),
   );
+  console.log(filteredData);
 
   return (
     <section className="min-h-screen w-full">
-      <h1 className="pt-6 flex items-center justify-center text-[30px] "><GoHome className="" />Home</h1>
+      <h1 className="flex items-center justify-center pt-6 text-[30px] ">
+        <GoHome className="" />
+        Home
+      </h1>
       <SearchBar onChange={handleChange} search={search} />
       <AlbumList albums={filteredData} />
     </section>
